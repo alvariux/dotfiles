@@ -75,7 +75,10 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'sheerun/vim-polyglot'
 
 "Tab autocomplete
-Plug 'ajh17/vimcompletesme'
+"Plug 'ajh17/vimcompletesme'
+Plug 'mattn/emmet-vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 
 "File fomatter
 "Plug 'chiel92/vim-autoformat',{ 'on': 'Autoformat' }
@@ -110,4 +113,21 @@ endif
 let g:mapleader = ' '
 nnoremap <leader>s :w<CR>
 
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
