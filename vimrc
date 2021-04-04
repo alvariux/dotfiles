@@ -13,6 +13,7 @@ set softtabstop=2
 set shiftround
 set expandtab
 set smartindent
+set laststatus=2
 
 set encoding=utf-8 nobomb
 
@@ -78,13 +79,16 @@ Plug 'sheerun/vim-polyglot'
 "Plug 'ajh17/vimcompletesme'
 Plug 'mattn/emmet-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
+"Plug 'francoiscabrol/ranger.vim'
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 "File fomatter
 "Plug 'chiel92/vim-autoformat',{ 'on': 'Autoformat' }
 
 if has('nvim')
     Plug 'neovim/nvim-lspconfig'
+    Plug 'rbgrouleff/bclose.vim'
 else
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
@@ -106,6 +110,20 @@ if has("syntax")
     "silent! colorscheme nord
     set termguicolors
 endif
+
+
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
 
 "--------------------------------------------------------------------------
 
@@ -130,4 +148,11 @@ if has('nvim')
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
+
+
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
 
